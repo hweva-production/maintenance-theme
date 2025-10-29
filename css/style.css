@@ -1,0 +1,672 @@
+/* ============================================
+   Website Under Maintenance - Main Stylesheet
+   ============================================ */
+
+/* CSS Variables for Theme Colors */
+:root {
+    --primary-blue: #2563eb;
+    --accent-blue: #3b82f6;
+    --background-white: #ffffff;
+    --neutral-gray: #f3f4f6;
+    --text-gray: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    
+    /* Dark Mode Colors */
+    --dark-bg: #0f172a;
+    --dark-surface: #1e293b;
+    --dark-text: #e2e8f0;
+    --dark-text-light: #94a3b8;
+    --dark-border: #334155;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+    --background-white: var(--dark-bg);
+    --neutral-gray: var(--dark-surface);
+    --text-gray: var(--dark-text);
+    --text-light: var(--dark-text-light);
+    --border-color: var(--dark-border);
+}
+
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background-white);
+    color: var(--text-gray);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--primary-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    z-index: 10000;
+    border-radius: 0 0 4px 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.skip-link:focus {
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-spinner {
+    position: relative;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--neutral-gray);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Container */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    z-index: 1000;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--neutral-gray);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-gray);
+}
+
+.theme-toggle:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: scale(1.1);
+    border-color: var(--primary-blue);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+    display: block;
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    min-height: calc(100vh - 80px);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    padding: 0.5rem 0;
+}
+
+/* Illustration */
+.illustration-wrapper {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.maintenance-illustration {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    color: var(--primary-blue);
+    animation: float 3s ease-in-out infinite;
+    will-change: transform;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.illustration-bg {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+}
+
+.server-tower {
+    animation: server-pulse 3s ease-in-out infinite;
+}
+
+@keyframes server-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.85;
+    }
+}
+
+/* Typography */
+.headline {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-gray);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.subtext {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* Fade-in Animations */
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+.fade-in-up:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.fade-in-up:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.fade-in-up:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.fade-in-up:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.fade-in-up:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Countdown Timer */
+.countdown-container {
+    margin: 1.5rem 0;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.countdown-number {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--primary-blue);
+    display: block;
+    transition: all 0.3s ease;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    will-change: transform, opacity;
+}
+
+.countdown-number.changed {
+    animation: numberChange 0.5s ease;
+}
+
+@keyframes numberChange {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.countdown-label {
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.countdown-separator {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin: 0 0.25rem;
+}
+
+/* Form Container */
+.form-container {
+    margin: 1.5rem 0;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notify-form {
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.email-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 1rem 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: var(--background-white);
+    color: var(--text-gray);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.email-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.email-input::placeholder {
+    color: var(--text-light);
+}
+
+.submit-btn {
+    padding: 1rem 2rem;
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: inherit;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.error-message,
+.success-message {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    display: none;
+}
+
+.error-message.active {
+    display: block;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+.success-message.active {
+    display: block;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+/* Social Media Icons */
+.social-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--neutral-gray);
+    border-radius: 50%;
+    color: var(--text-gray);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.social-link:hover {
+    background-color: var(--primary-blue);
+    color: white;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.social-link:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--neutral-gray);
+    margin-top: auto;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin: 0.5rem 0;
+}
+
+.footer-design {
+    margin-top: 0.75rem;
+}
+
+.footer-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+.footer-link:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 1.5rem;
+    }
+    
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .main {
+        padding: 1rem;
+    }
+    
+    .hero {
+        padding: 1rem 0;
+    }
+    
+    .illustration-wrapper {
+        margin-bottom: 0.75rem;
+    }
+    
+    .maintenance-illustration {
+        max-width: 220px;
+    }
+    
+    .countdown-container {
+        margin: 1rem 0;
+    }
+    
+    .form-container {
+        margin: 1rem 0;
+    }
+    
+    .social-container {
+        margin-top: 1rem;
+    }
+    
+    .countdown-timer {
+        gap: 0.5rem;
+    }
+    
+    .countdown-item {
+        min-width: 60px;
+    }
+    
+    .countdown-separator {
+        margin: 0 0.25rem;
+    }
+    
+    .form-group {
+        flex-direction: column;
+    }
+    
+    .email-input,
+    .submit-btn {
+        width: 100%;
+    }
+    
+    .social-container {
+        gap: 1rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-link svg {
+        width: 20px;
+        height: 20px;
+    }
+    .countdown-container {
+        margin: 1.75rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .headline {
+        font-size: 1.75rem;
+    }
+    
+    .subtext {
+        font-size: 0.95rem;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .countdown-separator {
+        font-size: 2rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .preloader,
+    .theme-toggle,
+    .social-container {
+        display: none;
+    }
+}
+
