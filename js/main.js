@@ -28,10 +28,10 @@
          *
          * Leave empty until the actual start time is confirmed.
          */
-        outageStartedAt: '2026-10-20T08:30:00+02:00',
+        outageStartedAt: '2026-10-20T08:30:00',
 
         // Default theme when no saved preference exists.
-        defaultTheme: 'light',
+        defaultTheme: 'dark',
 
         // Update the elapsed-time display every second.
         updateInterval: 1000
